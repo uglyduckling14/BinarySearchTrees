@@ -10,7 +10,6 @@ public class Tree<E extends Comparable<? super E>> {
      * @param label Name of tree
      */
 
-
     public Tree(String label) {
         name = label;
     }
