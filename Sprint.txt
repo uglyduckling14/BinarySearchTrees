@@ -1,3 +1,4 @@
 |Date|                                          |Time  |
 |1/22| Watched video, read instructions         |30 min|
 |1/23| Wrote examples for documentation         |1 hour|
+|    | Wrote 35% of pseudocode                  |1 hour|
