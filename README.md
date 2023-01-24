@@ -1,6 +1,6 @@
 # Assn 2: Recursion  
 ## Introduction:  
-Using recursion, travers and report information on binary search trees.
+Using recursion, traverse and report information on binary search trees.
 
 ### public String toString(){  
     //output is:  
@@ -13,7 +13,7 @@ Using recursion, travers and report information on binary search trees.
     //25 [no parent]  
             //14 [10]  
         //10 [25]  
-
+    
 }  
 ### public String inOrderToString(){  
     //output is:  
@@ -35,6 +35,45 @@ Using recursion, travers and report information on binary search trees.
         14 [10]           14 [55]
     10 [25]                 10 [14]
     */
+    add each value in order to the arraylist. Once done, divide in half and insert into a new tree.
+    starting with Tree # then print right most value with parent node in [].
+    private ArrayList inOrder(root){
+        if(root == null){
+            add root to ArrayList
+        }
+        recursive function(root.left);
+        add root to ArrayList;
+        recursive function(root.right);
+    }
+    private boolean checkBalance(BST){
+        int leftHeight;
+        int rightHeight;
+        if(node == null){
+            return true;
+        }
+        leftHeight = height(node.left);
+        rightHeight = height(node.right);
+        if(Math.abs(leftHeight-rightHeight)<=1 && checkBalance(node.left) && checkBalance(node.right)){
+            return true;
+        }
+        return false;
+    }
+    private int height(BST){
+        if(node == null){
+            return 0;
+        }    
+        return 1+ Math.max(height(node.left),height(node.right));
+    }
+    private Node balanced(ArrayList, start, end){
+        if(start>end){
+            return null;
+        }
+        int middle = (start + end)/2;
+        Node root = ArrayList.get(middle);
+        root.left = balanced(nodes,start, mid-1);
+        root.right = balanced(nodes, mid+1, end);
+        return root;
+    }
 }
 ### public void flip(){
     /* Before:                   After:             
@@ -48,6 +87,18 @@ Using recursion, travers and report information on binary search trees.
             14 [10]                60 [25]         
           10 [25]                    63 [60] 
     */
+        call recursive function(root){
+            temp = root.left
+            root.left = root.right;
+            root.right = temp;
+            if(root.left != null){
+                recursive function(root.left);
+            }
+            if(root.right != null){
+                recursive function(root.right);
+            }
+        }
+    }
 }
 ### public BinaryTreeNode<E> getByKey(E key){
     // returns given BST key
@@ -86,9 +137,31 @@ Using recursion, travers and report information on binary search trees.
         25 60 55 58
         25 60 63
     */
+    String path = "";
+    call recursive function(node,path){
+        if(node == null){
+            return;
+        }
+        path+=node;
+        if(node.left == null && node.right==null){
+            System.out.println(path);
+            path = " ";
+        }else{
+            call recursive function(node.left, path);
+            call recursive function(node.right, path);
+        }
+    }
 }
 ### public BinaryTreeNode<E> inOrderSuccessor(BinaryTreeNode<E> node){
-    // Traverse the tree to find the value closest to the given value
+    // Traverse the tree to find the value closest to and above the given value
+    if(node == null){
+        return node;
+    }
+    if(node.right>node){
+        return inOrderSuccessor(node.right);
+    }else{
+    
+    }
 }
 ### public int countBST(){
     // returns valid BST subtrees

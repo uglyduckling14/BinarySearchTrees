@@ -2,3 +2,4 @@
 |1/22| Watched video, read instructions         |30 min|
 |1/23| Wrote examples for documentation         |1 hour|
 |    | Wrote 35% of pseudocode                  |1 hour|
+|1/24| Wrote flipped, balanced pseudocode       |1 hour|
