@@ -47,13 +47,22 @@ public class Tree<E extends Comparable<? super E>> {
         // TODO:
         return "";
     }
-
     /**
      * Return a string containing the tree contents as a single line
      */
     public String inOrderToString() {
-        // TODO:
-        return "";
+        name+=":";
+        return inOrder(root);
+    }
+    private String inOrder(BinaryTreeNode node){
+        if (node == null){
+            return name;
+        }
+        //System.out.println(order);
+        inOrder(node.left);
+        name+=" "+node.key;
+        inOrder(node.right);
+        return name;
     }
 
     /**
@@ -95,9 +104,25 @@ public class Tree<E extends Comparable<? super E>> {
      *
      * @return Count of embedded binary search trees
      */
+    int count = -1;
     public int countBST() {
-        // TODO:
-        return 0;
+        count=counter(root,Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return count;
+    }
+    private int counter(BinaryTreeNode node, int min, int max){
+        if(node == null){
+            count++;
+            return count;
+        }
+        //System.out.println('x');
+        if((Integer)node.key < min || (Integer)node.key>max){
+            //System.out.println('x');
+            return count;
+        }
+        //System.out.println(count);
+        counter(node.left,min,(Integer)node.key);
+        counter(node.right,(Integer)node.key,max);
+        return count;
     }
 
     /**
