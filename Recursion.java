@@ -8,8 +8,8 @@ public class Recursion {
         Tree<Integer> tree2 = new Tree<>(v2, "Tree 2");
         Tree<Integer> tree3 = new Tree<>(v2, "Tree 3");
 
-//        System.out.println("-- tree1.toString() --");
-//        System.out.println(tree1.toString());
+        System.out.println("-- tree1.toString() --");
+        System.out.println(tree1.toString());
 //        System.out.println("-- tree2.toString() --");
 //        System.out.println(tree2.toString());
 
@@ -29,7 +29,7 @@ public class Recursion {
 //        System.out.println(tree1.toString());
 //        tree1.flip();   // restore it back to normal
 //        System.out.println();
-//
+
 //        System.out.println("-- tree1.nodesInLevel(...) --");
 //        System.out.printf("Nodes in level 0: %d\n", tree1.nodesInLevel(0));
 //        System.out.printf("Nodes in level 1: %d\n", tree1.nodesInLevel(1));
@@ -51,7 +51,7 @@ public class Recursion {
 //        System.out.printf("In-order successor of 9 is: %s\n", tree1.inOrderSuccessor(tree1.getByKey(9)));
 //        System.out.printf("In-order successor of 58 is: %s\n", tree1.inOrderSuccessor(tree1.getByKey(58)));
 //        System.out.println();
-//
+
 //        System.out.println("-- tree1.countBST() --");
 //        System.out.printf("# of BSTs is: %d\n", tree1.countBST());
 //        tree1.flip();

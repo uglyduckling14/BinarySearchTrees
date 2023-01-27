@@ -44,8 +44,25 @@ public class Tree<E extends Comparable<? super E>> {
      * Return a string containing the tree contents as a tree with one node per line
      */
     public String toString() {
-        // TODO:
-        return "";
+        System.out.println(name);
+        return toString("",root,1,root);
+    }
+    private String toString(String tree, BinaryTreeNode childNode, int indent, BinaryTreeNode parentNode){
+        if(childNode==null){
+            return "";
+        }
+        indent +=1;
+        for(int i = 0; i<indent; i++){
+            tree += " ";
+        }
+        tree = toString(tree, childNode.right, indent, childNode);
+        if(childNode == root){
+            //System.out.println('t');
+            tree = tree + childNode.key+"[ no parent ]"+"\n";
+        }else {
+            tree = tree +childNode.key + "[" + parentNode.key + "]" + "\n";
+        }
+        return tree + toString(tree, childNode.left, indent, childNode);
     }
     /**
      * Return a string containing the tree contents as a single line
@@ -69,7 +86,22 @@ public class Tree<E extends Comparable<? super E>> {
      * reverse left and right children recursively
      */
     public void flip() {
-        // TODO:
+        if(root == null){
+            return;
+        }
+        rFlip(root);
+    }
+    private void rFlip(BinaryTreeNode node){
+        BinaryTreeNode temp = node.left;
+        node.left = node.right;
+        node.right = temp;
+        if(node.left != null){
+            rFlip(node.left);
+        }
+        if(node.right != null){
+            rFlip(node.right);
+        }
+        return;
     }
 
     /**
@@ -88,15 +120,42 @@ public class Tree<E extends Comparable<? super E>> {
      * @return count of number of nodes at specified level
      */
     public int nodesInLevel(int level) {
-        // TODO:
-        return 0;
+        if(level==0){
+            return 1;
+        }
+        if(root == null){
+            return 0;
+        }
+        return countingLevel(level, 0, root);
+    }
+    private int countingLevel(int level, int currentLevel, BinaryTreeNode node){
+        if(node == null){
+            return 0;
+        }
+        if(level == currentLevel){
+            return 1;
+        }
+        return countingLevel(level,currentLevel+1,node.left)+countingLevel(level,currentLevel+1,node.right);
     }
 
     /**
      * Print all paths from root to leaves
      */
     public void printAllPaths() {
-        // TODO:
+        String path = "";
+        allPath(root,path);
+    }
+    private void allPath(BinaryTreeNode node, String path){
+            if(node == null){
+                return;
+            }
+            path+=node.key+" ";
+            if(node.left == null && node.right==null){
+                System.out.println(path);
+            }else{
+                allPath(node.left, path);
+                allPath(node.right, path);
+            }
     }
 
     /**
@@ -135,10 +194,27 @@ public class Tree<E extends Comparable<? super E>> {
     }
 
     public BinaryTreeNode getByKey(E key) {
-        // TODO:
-        return null;
+        if(root==null){
+            return null;
+        }
+        if(root.key == key){
+            return root;
+        }
+        return getKey(key, root);
     }
-
+    private BinaryTreeNode getKey(E key, BinaryTreeNode node){
+        if(node == null){
+            return null;
+        }
+        if(node.key == key){
+            return node;
+        }
+        if((Integer)node.key > (Integer)key){
+            return getKey(key,node.left);
+        }else{
+            return getKey(key,node.right);
+        }
+    }
     /**
      * Balance the tree
      */

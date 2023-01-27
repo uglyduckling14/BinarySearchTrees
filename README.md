@@ -12,7 +12,20 @@ Using recursion, traverse and report information on binary search trees.
     //55 [60]  
     //25 [no parent]  
             //14 [10]  
-        //10 [25]  
+        //10 [25] 
+    System.out.println(tree.label);
+    if(root == null){
+        return " ";
+    }
+    String tree ="";
+    recursive function(String tree, root.right, 0, root);
+    recursive function(String tree, BST childNode, int indent, BST parentNode){
+        indent +=10;
+        recursive(tree,childNode.right, indent, childNode);
+        tree += indent + childNode+[parentNode]+\n; 
+        tree = "";
+        recursive function(tree, childNode.left, indent, childNode);
+    }
     
 }  
 ### public String inOrderToString(){  
