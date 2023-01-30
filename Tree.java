@@ -51,18 +51,21 @@ public class Tree<E extends Comparable<? super E>> {
         if(childNode==null){
             return "";
         }
-        indent +=1;
-        for(int i = 0; i<indent; i++){
-            tree += " ";
-        }
         tree = toString(tree, childNode.right, indent, childNode);
+        indent++;
+        String indentTree="";
+        for(int i = 0; i<indent; i++){
+            indentTree += " ";
+        }
         if(childNode == root){
             //System.out.println('t');
-            tree = tree + childNode.key+"[ no parent ]"+"\n";
+            tree = tree + childNode.key+" [no parent]"+"\n";
         }else {
-            tree = tree +childNode.key + "[" + parentNode.key + "]" + "\n";
+            indent+=2;
+            tree = tree +indentTree+childNode.key + " [" + parentNode.key + "]" + "\n";
         }
-        return tree + toString(tree, childNode.left, indent, childNode);
+        //indent++;
+        return " "+tree+toString(tree, childNode.left, indent, childNode);
     }
     /**
      * Return a string containing the tree contents as a single line

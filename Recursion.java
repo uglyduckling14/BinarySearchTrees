@@ -10,8 +10,8 @@ public class Recursion {
 
         System.out.println("-- tree1.toString() --");
         System.out.println(tree1.toString());
-//        System.out.println("-- tree2.toString() --");
-//        System.out.println(tree2.toString());
+        System.out.println("-- tree2.toString() --");
+        System.out.println(tree2.toString());
 
 //        System.out.println("-- tree1.inOrderToString() --");
 //        System.out.println(tree1.inOrderToString());
