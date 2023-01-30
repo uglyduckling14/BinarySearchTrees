@@ -45,14 +45,13 @@ public class Tree<E extends Comparable<? super E>> {
      */
     public String toString() {
         System.out.println(name);
-        return toString("",root,1,root);
+        return toString("",root,0,root);
     }
     private String toString(String tree, BinaryTreeNode childNode, int indent, BinaryTreeNode parentNode){
         if(childNode==null){
             return "";
         }
-        tree = toString(tree, childNode.right, indent, childNode);
-        indent++;
+        tree = toString(tree, childNode.right, indent+=2, childNode);
         String indentTree="";
         for(int i = 0; i<indent; i++){
             indentTree += " ";
@@ -65,7 +64,7 @@ public class Tree<E extends Comparable<? super E>> {
             tree = tree +indentTree+childNode.key + " [" + parentNode.key + "]" + "\n";
         }
         //indent++;
-        return " "+tree+toString(tree, childNode.left, indent, childNode);
+        return tree+toString(tree, childNode.left, indent, childNode);
     }
     /**
      * Return a string containing the tree contents as a single line
@@ -223,6 +222,16 @@ public class Tree<E extends Comparable<? super E>> {
      */
     public void balanceTree() {
         // TODO:
+    }
+    private BinaryTreeNode builder(BinaryTreeNode node,ArrayList<E> list,int start, int end){
+        if(start>end){
+            return null;
+        }
+        int middle = (start+end)/2;
+        node.key = list.get(middle);
+        node.left = builder(node.left, list,start, middle-1);
+        node.right = builder(node.right, list, middle+1, end);
+        return node;
     }
 
     /**

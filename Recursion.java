@@ -19,10 +19,10 @@ public class Recursion {
 //        System.out.println(tree2.inOrderToString());
 //        System.out.println();
 
-//        System.out.println("-- tree2.balanceTree() --");
-//        tree2.balanceTree();
-//        System.out.println(tree2.toString());
-//        System.out.println();
+        System.out.println("-- tree2.balanceTree() --");
+        tree2.balanceTree();
+        System.out.println(tree2.toString());
+        System.out.println();
 //
 //        System.out.println("-- tree1.flip() --");
 //        tree1.flip();
