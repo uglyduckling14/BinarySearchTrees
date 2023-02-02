@@ -103,7 +103,6 @@ public class Tree<E extends Comparable<? super E>> {
         if(node.right != null){
             rFlip(node.right);
         }
-        return;
     }
 
     /**
@@ -111,10 +110,22 @@ public class Tree<E extends Comparable<? super E>> {
      * @param node node from which to find the in-order successor
      */
     public BinaryTreeNode inOrderSuccessor(BinaryTreeNode node) {
-        // TODO:
-        return null;
+        if(node.right!=null){
+            return leftSuccessor(node.right);
+        }
+        BinaryTreeNode parent = node.parent;
+        while(parent != null && node == parent.right){
+            node = parent;
+            parent = parent.parent;
+        }
+        return parent;
     }
-
+    private BinaryTreeNode leftSuccessor(BinaryTreeNode node){
+        if(node.left==null){
+            return node;
+        }
+        return leftSuccessor(node.left);
+    }
     /**
      * Counts number of nodes in specified level
      *
@@ -165,24 +176,25 @@ public class Tree<E extends Comparable<? super E>> {
      *
      * @return Count of embedded binary search trees
      */
-    int count = -1;
+    int count = 1;
     public int countBST() {
+        count=1;
         count=counter(root,Integer.MIN_VALUE, Integer.MAX_VALUE);
         return count;
     }
     private int counter(BinaryTreeNode node, int min, int max){
         if(node == null){
-            count++;
             return count;
         }
         //System.out.println('x');
-        if((Integer)node.key < min || (Integer)node.key>max){
-            //System.out.println('x');
-            return count;
-        }
         //System.out.println(count);
+        //System.out.println(node.key);
         counter(node.left,min,(Integer)node.key);
         counter(node.right,(Integer)node.key,max);
+        if((Integer)node.key >= min && (Integer)node.key<=max){
+            //System.out.println('x');
+            return count++;
+        }
         return count;
     }
 
@@ -221,16 +233,30 @@ public class Tree<E extends Comparable<? super E>> {
      * Balance the tree
      */
     public void balanceTree() {
-        // TODO:
+        root = balanceTree(root);
     }
-    private BinaryTreeNode builder(BinaryTreeNode node,ArrayList<E> list,int start, int end){
+    private BinaryTreeNode balanceTree(BinaryTreeNode node){
+        ArrayList<BinaryTreeNode> nodes = new ArrayList<>();
+        storer(node,nodes);
+        int length = nodes.size();
+        return builder(nodes,0, length-1);
+    }
+    private void storer(BinaryTreeNode node, ArrayList<BinaryTreeNode> list){
+        if(node == null){
+            return;
+        }
+        storer(node.left,list);
+        list.add(node);
+        storer(node.right, list);
+    }
+    private BinaryTreeNode builder(ArrayList<BinaryTreeNode> list,int start, int end){
         if(start>end){
             return null;
         }
         int middle = (start+end)/2;
-        node.key = list.get(middle);
-        node.left = builder(node.left, list,start, middle-1);
-        node.right = builder(node.right, list, middle+1, end);
+        BinaryTreeNode node = list.get(middle);
+        node.left = builder(list,start, middle-1);
+        node.right = builder(list, middle+1, end);
         return node;
     }
 

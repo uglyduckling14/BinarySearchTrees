@@ -8,10 +8,10 @@ public class Recursion {
         Tree<Integer> tree2 = new Tree<>(v2, "Tree 2");
         Tree<Integer> tree3 = new Tree<>(v2, "Tree 3");
 
-        System.out.println("-- tree1.toString() --");
-        System.out.println(tree1.toString());
-        System.out.println("-- tree2.toString() --");
-        System.out.println(tree2.toString());
+//        System.out.println("-- tree1.toString() --");
+//        System.out.println(tree1.toString());
+//        System.out.println("-- tree2.toString() --");
+//        System.out.println(tree2.toString());
 
 //        System.out.println("-- tree1.inOrderToString() --");
 //        System.out.println(tree1.inOrderToString());
@@ -19,11 +19,11 @@ public class Recursion {
 //        System.out.println(tree2.inOrderToString());
 //        System.out.println();
 
-        System.out.println("-- tree2.balanceTree() --");
-        tree2.balanceTree();
-        System.out.println(tree2.toString());
-        System.out.println();
-//
+//        System.out.println("-- tree2.balanceTree() --");
+//        tree2.balanceTree();
+//        System.out.println(tree2.toString());
+//        System.out.println();
+
 //        System.out.println("-- tree1.flip() --");
 //        tree1.flip();
 //        System.out.println(tree1.toString());
@@ -54,11 +54,12 @@ public class Recursion {
 
 //        System.out.println("-- tree1.countBST() --");
 //        System.out.printf("# of BSTs is: %d\n", tree1.countBST());
-//        tree1.flip();
-//        System.out.printf("# of BSTs after calling .flip() is: %d\n", tree1.countBST());
+        tree1.flip();
+        System.out.printf("# of BSTs after calling .flip() is: %d\n", tree1.countBST());
+        System.out.println(tree1.toString());
 //        System.out.println("-- tree3.countBST() --");
 //        System.out.printf("# of BSTs is: %d\n", tree3.countBST());
-//        tree3.flip();
-//        System.out.printf("# of BSTs after calling .flip() is: %d\n", tree3.countBST());
+        tree3.flip();
+        System.out.printf("# of BSTs after calling .flip() is: %d\n", tree3.countBST());
      }
 }

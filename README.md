@@ -192,3 +192,8 @@ Using recursion, traverse and report information on binary search trees.
         }
     }
 }
+
+## Notes:
+Major Changes:   
+* Removed inOrder, height and checkBalance from balanceTree().   
+* 
