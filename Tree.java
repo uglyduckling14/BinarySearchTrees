@@ -70,18 +70,18 @@ public class Tree<E extends Comparable<? super E>> {
      * Return a string containing the tree contents as a single line
      */
     public String inOrderToString() {
-        name+=":";
-        return inOrder(root);
+        String newname=name+":";
+        return inOrder(root,newname);
     }
-    private String inOrder(BinaryTreeNode node){
+    private String inOrder(BinaryTreeNode node, String newname){
         if (node == null){
-            return name;
+            return newname;
         }
         //System.out.println(order);
-        inOrder(node.left);
-        name+=" "+node.key;
-        inOrder(node.right);
-        return name;
+        inOrder(node.left,newname);
+        newname+=" "+node.key;
+        inOrder(node.right,newname);
+        return newname;
     }
 
     /**
@@ -176,24 +176,34 @@ public class Tree<E extends Comparable<? super E>> {
      *
      * @return Count of embedded binary search trees
      */
-    int count = 1;
+    int count = 0;
     public int countBST() {
-        count=1;
-        count=counter(root,Integer.MIN_VALUE, Integer.MAX_VALUE);
+        count=0;
+        counter(root,Integer.MIN_VALUE, Integer.MAX_VALUE);
         return count;
     }
     private int counter(BinaryTreeNode node, int min, int max){
         if(node == null){
             return count;
+        }else if(node.right==null&&node.left==null){
+            return count++;
         }
-        //System.out.println('x');
-        //System.out.println(count);
-        //System.out.println(node.key);
         counter(node.left,min,(Integer)node.key);
         counter(node.right,(Integer)node.key,max);
         if((Integer)node.key >= min && (Integer)node.key<=max){
-            //System.out.println('x');
-            return count++;
+            if(node!=root) {
+                return count++;
+            }else{
+                if(node.right!=null&&node.left!=null&&(Integer)node.key>=(Integer)node.left.key&&(Integer)node.key<=(Integer)node.right.key){
+                    return count++;
+                }else if((node.right!=null^node.left!=null)){
+                    if(node.right!=null&&(Integer)node.key<=(Integer)node.right.key){
+                        return count++;
+                    }else if(node.left!=null&&(Integer)node.key>=(Integer)node.left.key) {
+                        return count++;
+                    }
+                }
+            }
         }
         return count;
     }
